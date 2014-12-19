@@ -53,6 +53,9 @@ define [
     _map_data: () ->
       [@sx, @sy] = @renderer.map_to_screen(@x, @glyph.x.units, @y, @glyph.y.units)
 
+      @sx_offset = @distance_vector('x', 'x_offset', 'edge')
+      @sy_offset = @distance_vector('y', 'y_offset', 'edge')
+
     _mask_data: () ->
       # dilate the inner screen region by max_size and map back to data space for use in
       # spatial query
@@ -117,6 +120,12 @@ define [
       return hits
 
   class Marker extends Glyph.Model
+
+
+    defaults: ->
+        x_offset: {value: 0, units: "screen"}
+        y_offset: {value: 0, units: "screen"}
+      }
 
     display_defaults: ->
       return _.extend {}, super(), {

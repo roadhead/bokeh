@@ -30,7 +30,7 @@ p.background_fill= "#cccccc"
 p.circle(elements["atomic mass"], elements["density"], size=12,
        color=meltingpointcolors, line_color="black", fill_alpha=0.8)
 
-p.text(elements["atomic mass"], elements["density"]+0.3,
+p.text(elements["atomic mass"], elements["density"], y_offset=-12,
     text=elements["symbol"],text_color="#333333",
     text_align="center", text_font_size="10pt")
 
