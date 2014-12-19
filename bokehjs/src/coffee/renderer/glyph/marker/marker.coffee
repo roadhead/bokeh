@@ -123,6 +123,7 @@ define [
 
 
     defaults: ->
+      return _.extend {}, super(), {
         x_offset: {value: 0, units: "screen"}
         y_offset: {value: 0, units: "screen"}
       }
