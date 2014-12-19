@@ -24,7 +24,7 @@ define [
 
   class MarkerView extends Glyph.View
 
-    _fields: ['x', 'y', 'size']
+    _fields: ['x', 'y', 'x_offset', 'y_offset', 'size']
 
     draw_legend: (ctx, x0, x1, y0, y1) ->
       reference_point = @get_reference_point() ? 0

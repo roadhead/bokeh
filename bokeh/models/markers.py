@@ -11,6 +11,8 @@ class Marker(Glyph, FillProps, LineProps):
 
     x = DataSpec
     y = DataSpec
+    x_offset = DataSpec(units="screen", default=0)
+    y_offset = DataSpec(units="screen", default=0)
     size = DataSpec(units="screen", min_value=0, default=4)
 
 class Asterisk(Marker):

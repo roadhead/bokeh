@@ -9,12 +9,15 @@ define [
 
     _render: (ctx, indices, sx=@sx, sy=@sy, size=@size) ->
       for i in indices
-        if isNaN(sx[i] + sy[i] + size[i])
+        if isNaN(sx[i] + @sx_offset[i] + sy[i] + @sy_offset[i] + size[i])
           continue
+
+        sxi = sx[i] + @sx_offset[i]
+        syi = sy[i] + @sy_offset[i]
 
         ctx.beginPath()
         r = size[i]/2
-        ctx.arc(sx[i], sy[i], r, 0, 2*Math.PI, false)
+        ctx.arc(sxi, syi, r, 0, 2*Math.PI, false)
 
         if @props.fill.do_fill
           @props.fill.set_vectorize(ctx, i)
@@ -22,10 +25,10 @@ define [
 
         if @props.line.do_stroke
           @props.line.set_vectorize(ctx, i)
-          ctx.moveTo(sx[i]-r, sy[i]+r)
-          ctx.lineTo(sx[i]+r, sy[i]-r)
-          ctx.moveTo(sx[i]-r, sy[i]-r)
-          ctx.lineTo(sx[i]+r, sy[i]+r)
+          ctx.moveTo(sxi-r, syi+r)
+          ctx.lineTo(sxi+r, syi-r)
+          ctx.moveTo(sxi-r, syi-r)
+          ctx.lineTo(sxi+r, syi+r)
           ctx.stroke()
 
   class CircleX extends Marker.Model
